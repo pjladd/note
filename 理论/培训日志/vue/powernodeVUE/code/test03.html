@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!-- 
+            
+            在vuejs中，为了为页面中的元素渲染值（为前端标签对中的内容赋值） 
+            可以使用3种形式：
+                插值表达式{{str}}
+                v-text
+                v-html
+        
+        
+        -->
+
+        <!-- 使用插值表达式为标签对中的内容赋值 -->
+        <p>==============={{str1}}===============</p>
+        <p v-text="str2">=====================</p>
+        <p v-html="str3">=====================</p>
+
+    </div>
+    
+    <script>
+    
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                "str1" : "aaa", 
+                "str2" : "bbb",
+                "str3" : "ccc"
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

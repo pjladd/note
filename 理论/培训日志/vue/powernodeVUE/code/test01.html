@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    
+    <!-- 在外层标签div中引入 id属性值 将来vuejs会通过该id，找到需要操作的元素 -->
+    <!-- 以下Vue实例vm所控制的这个元素区div，就是我们的V -->
+    <div id="app">
+
+        <!-- 在前端页面元素的部分，其中的内容我们暂时以插值表达式的形式来呈现 -->
+        <!-- 在两对p标签中分别引入了插值表达式，相当于将p标签对中的内容写活了，内容以变量的形式存在 -->
+        <p>{{str1}}</p>
+        <p>{{str2}}</p>
+
+    </div>
+    
+    <script>
+    
+        //当Vuejs框架包导入进来之后，在浏览器缓存中，就已经存在了一个Vue框架的构造函数
+        //我们new出来的这个vm对象，就是页面中对于模型和视图（数据和页面元素）的整体调度者
+        //以下创建出来的vm对象，就是我们MVVM中的VM调度者
+        var vm = new Vue({
+
+            el : "#app",    //el元素表现的是要指定为哪个标签进行相应的vuejs的操作
+            data : {    //data是vuejs中对于数据的表达，数据约定俗成的都是以json的形式来呈现的
+                //data属性中，存放的是el中要使用到的数据
+                //这里的data就是MVVM中M，专门用来表现数据的组件
+                "str1" : "HelloWorld1", 
+                "str2" : "HelloWorld2"
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

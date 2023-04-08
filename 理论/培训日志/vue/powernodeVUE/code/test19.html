@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!-- 每一次遍历出来的元素，代表一个城市信息对象 -->
+        <p v-for="(city,i) in cityList" :key="city.id">
+
+            <!-- 对象以  .属性名 的形式来取得属性值 -->
+            {{i}}------------------{{city.id}}-----------{{city.name}}
+
+        </p>
+
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                
+                cityList : [
+
+                    {id:"A0001",name:"北京"},
+                    {id:"A0002",name:"上海"},
+                    {id:"A0003",name:"广州"},
+                    {id:"A0004",name:"深圳"},
+                    {id:"A0005",name:"沈阳"},
+
+                ]
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

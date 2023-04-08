@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+    
+        [v-cloak]{
+
+            display: none;  
+
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+
+        <p v-cloak>{{str1}}</p>
+        <p v-cloak>{{str2}}</p>
+
+    </div>
+    
+    <script>
+    
+        var vm = new Vue({
+
+            el : "#app",    //el元素表现的是要指定为哪个标签进行相应的vuejs的操作
+            data : {    //data是vuejs中对于数据的表达，数据约定俗成的都是以json的形式来呈现的
+                //data属性中，存放的是el中要使用到的数据
+                //这里的data就是MVVM中M，专门用来表现数据的组件
+                "str1" : "HelloWorld1", 
+                "str2" : "HelloWorld2"
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

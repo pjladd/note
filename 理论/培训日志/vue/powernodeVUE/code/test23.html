@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    <style>
+    
+        .hFontColor{
+
+            color: brown
+
+        }
+
+        .hAlign{
+
+            text-align: center
+
+        }
+
+        td{
+
+            text-align: center
+
+        }
+
+    
+    </style>
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!--
+
+            模拟表结构：
+                student
+                id：编号
+                name：姓名
+                gender：性别
+                age：年龄
+
+        -->
+        <!-- 
+            
+            基础建设：
+                搭建用来填写信息的文本框
+                搭建表格结构
+                搭建添加信息按钮，删除信息的按钮 
+                搭建一些基础的样式
+
+        -->
+        <!--
+
+            vuejs建设：
+             data：
+                    模型
+                    对象集合，编号，姓名，性别，年龄
+             methods：
+                    添加方法，删除方法
+                    扩展：查询信息列表方法
+
+        -->
+
+        
+        <h3 :class="hstyle">学生信息管理系统</h3>
+        
+        <hr width="100%">
+
+        <br/>
+
+        <!-- 搭建添加操作相关信息 -->
+        编号：<input type="text" v-model="id"/>&nbsp;&nbsp;<!-- A0001 -->
+        姓名：<input type="text" v-model="name"/>&nbsp;&nbsp;
+        性别：<input type="text" v-model="gender"/>&nbsp;&nbsp;
+        年龄：<input type="text" v-model="age"/>&nbsp;&nbsp;
+
+        <input type="button" value="保存学员" @click="save"/>
+
+        <br/>
+        <br/>
+
+        <!-- 搭建表格元素 -->
+        <table border="1" width="100%" align="center" cellpadding="6px" cellspacing="0px">
+
+            <tr>
+
+                <td>序号</td><!-- 1,2,3,4,5.... -->
+                <td>编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>操作</td><!-- 为删除超链接提供入口 -->
+
+            </tr>
+
+            <!-- 内容部分 读取模型sList中的数据 使用v-for的形式对sList做遍历-->
+            <!--
+
+                每一个s，就是每一个遍历出来的学生对象，将来在取得学生信息的时候，通过{{s.属性}}来取值
+                i变量是遍历出来元素的下标，从0开始做标记，在序号中，应该是以下标+1的方式开始标记（序号从1开始计数）
+            -->
+            <tr v-for="(s,i) in sList">
+
+                <td>{{i+1}}</td>
+                <td>{{s.id}}</td>
+                <td>{{s.name}}</td>
+                <td>{{s.gender}}</td>
+                <td>{{s.age}}</td>
+                <td>
+
+                    <!--
+
+                        使用href="javascript:void(0)"将超链接的href行为禁用掉，该超链接只能以绑定事件的形式来触发行为
+                        与之前学习的click的prevent的用处是一样的
+
+                    -->
+                    <!--
+
+                        根据编号执行删除操作
+                        
+                        注意：
+                            在方法中传递实参，不需要使用插值表达式
+                            使用方式：del(s.id)
+                            而不是：del({{s.id}})
+
+                    -->
+                    <a href="javascript:void(0)" @click="del(s.id)">删除学员</a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+
+               sList : [
+
+                    {id:"A0001",name:"zs",gender:"男",age:"23"},
+                    {id:"A0002",name:"ls",gender:"男",age:"24"},
+                    {id:"A0003",name:"ww",gender:"男",age:"25"}
+
+               ],
+
+               id : "",
+               name : "",
+               gender : "",
+               age : "",
+               hstyle:{hFontColor:true,hAlign:true}
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                save(){
+
+                    /*
+
+                        通过在页面中对文本框进行信息的完善（对视图V进行数据的填充）
+                        根据使用对于视图中值的绑定方式是v-model的方式，会实现双向数据绑定
+                        通过对视图的数据的填充，同时也是对模型中数据的填充
+                        在我们触发的save方法当中，取得模型中的值，就相当于是取得了在页面文本框填充的数据
+                        将这些数据收集起来，形成一个对象，将该对象添加到我们的sList对象数据中就可以了
+
+                    */
+
+                    var s = {id:this.id,name:this.name,gender:this.gender,age:this.age};
+
+                    this.sList.push(s);
+
+                },
+
+                del(id){
+
+                    //id:需要删除记录的id，根据id来进行删除
+                    
+                    /*
+
+                        遍历sList中所有的对象
+                        从每一个对象中取得id信息，将每一个id与参数id进行比较
+                        如果id值相等，证明我们找到了需要删除的记录
+                        将该记录从sList中移除掉
+
+                    */
+
+                    for(var i=0;i<this.sList.length;i++){
+
+                        //如果id值相等，证明我们找到了需要删除的记录
+                        if(this.sList[i].id==id){
+
+                            //将该记录从sList中移除掉
+                            this.sList.splice(i,1);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

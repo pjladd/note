@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!--
+
+            遍历对象的属性和属性值：
+            必须以取出键值对的形式来遍历
+            (value值(属性值),key键(属性名)) in 对象
+            (value值(属性值),key键(属性名),i下标) in 对象
+
+        -->
+        <p v-for="(value,key,i) in city1">
+
+            {{i}}-------------{{key}}------------{{value}}
+
+        </p>        
+
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                
+                city1 : {id:"A0001",name:"北京"}
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <input type="text" v-model="num1"/>
+        
+        <select v-model="csign">
+
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+
+        </select>
+
+        <input type="text" v-model="num2"/>
+
+        <input type="button" value="=" @click="count"/>
+
+        <input type="text" v-model="result"/>
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                num1 : 0,
+                num2 : 0,
+                csign : "+",
+                result : 0
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                count(){
+
+                    if(this.csign=="+"){
+
+
+                        //直接取得的数值暂时是不能够直接计算的，默认的情况会按照字符串拼接的形式来触发+符号
+                        //默认拼接字符串： 1+1=11
+                        //在做数学计算之前，需要将数值格式化，才能够计算，使用parseInt方法做数值格式化的操作
+                        this.result = parseInt(this.num1)+parseInt(this.num2); 
+
+                    }else if(this.csign=="-"){
+
+                        this.result = parseInt(this.num1)-parseInt(this.num2); 
+                        
+                    }else if(this.csign=="*"){
+
+                        this.result = parseInt(this.num1)*parseInt(this.num2); 
+                        
+                    }else if(this.csign=="/"){
+
+                        this.result = parseInt(this.num1)/parseInt(this.num2); 
+                                            
+                    }
+
+                }
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

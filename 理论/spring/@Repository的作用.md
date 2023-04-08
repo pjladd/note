@@ -1,0 +1,6 @@
+# @Repository的作用
+
+@Repository的作用与@Controller，@Service的作用都是把对象交给Spring管理。@Repository是标注在Dao层接口上，作用是将接口的一个实现类交给Spring管理。
+但一般并不需要标注也可以正常使用：
+1.Spring配置文件中配置了MapperScannerConfiguer这个Bean，它会扫描持久层接口创建实现类并交给Spring管理。
+2.SpringBoot的启动类上标注了@MapperScanner，它的作用和上面的MapperScannerConfiguer作用一样。

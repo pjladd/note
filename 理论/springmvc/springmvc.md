@@ -1,0 +1,5 @@
+在学Springmvc时学到的对象才能配置到springmvc.xml中。除此以外的对象都是配置到spring.xml中。
+Springmvc的IOC容器是Spring的IOC容器的子容器。子容器能访问父容器，但是父类器不能访问子容
+器  
+
+springmvc整合spring的时候，为了防止产生springmvc容器 与 spring容器重复创建对象的问题，springmvc部分扫描的是controller这个包，spring部分扫描的是controller以外的包。

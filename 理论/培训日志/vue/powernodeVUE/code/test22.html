@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!--
+
+            v-if:boolean true/flase
+
+            当值为true：则展现标签对中的信息
+            当值为false：则不展现标签对中的信息
+
+        -->
+        <p v-if="flag">
+
+            显示该文本1
+
+        </p>
+
+        <p v-show="flag">
+
+            显示该文本2
+
+        </p>
+
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                
+               flag : false
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+    
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!-- 直接使用插值表达式 引用数组 通过下标展现所需元素 -->
+        <!-- <p>{{cityList[0]}}</p>
+        <p>{{cityList[1]}}</p>
+        <p>{{cityList[2]}}</p>
+        <p>{{cityList[3]}}</p>
+        <p>{{cityList[4]}}</p> -->
+
+        <!-- 
+            
+            使用v-for指令的形式遍历字符串数组 
+        
+            语法：元素 in 数组
+
+        -->
+        <!-- <p v-for="city in cityList">
+
+            {{city}}
+
+        </p> -->
+
+        <!-- 在以上需求的基础上 遍历出所有的元素以及对应的下标 -->
+        <p v-for="(city,i) in cityList">
+
+            {{i}}--------------{{city}}
+
+        </p>
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                
+                cityList : ["北京","上海","广州","深圳","沈阳"]
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

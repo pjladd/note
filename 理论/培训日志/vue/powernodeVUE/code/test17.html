@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入vuejs框架 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+    
+    <style>
+    
+        .style1{
+
+            color:red;
+
+        }
+
+        .style2{
+
+            background-color: aqua;
+
+        }
+
+        .style3{
+
+            font-style: italic;
+
+        }
+
+        .style4{
+
+            font-size: 30px;
+
+        }
+
+    
+    </style>
+
+</head>
+<body>
+    
+    <div id="app">
+        
+        <!-- <span :style="myStyle1">Hello Style</span> -->
+
+        <span :style="[myStyle1,myStyle2]">Hello Style</span>
+
+    </div>
+    
+
+
+    <script>
+    
+       
+
+        var vm = new Vue({
+
+            el : "#app",    
+            data : {
+                
+                myStyle1 : {color:'red','font-size':'30px'},
+                myStyle2 : {'font-style':'italic','background-color':'aqua'}
+
+            },
+            //methods:表示vuejs中对于绑定事件函数的定义，可以同时定义多个函数，多个函数之间使用逗号来进行分隔
+            methods:{
+
+                
+                
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

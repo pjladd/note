@@ -1,0 +1,70 @@
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+文档：
+https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/html/appendix-configuration-metadata.html#configuration-metadata-annotation-processor
+
+
+在网上搜索了一下，一大堆都是复制粘贴的，不少博客都是说这个包是用来加载传统的xml或者properties配置，其实这都是错的。没有springboot的时候照样有方法加载。
+
+spring官网说明
+这个包的作用是生成配置元数据，比如你平常在yml文件里面配置
+
+server:
+  port: 8080
+  #你在idea里面可以点击port，进到这个字段里面，还可以看到配置的提示信息
+aaa:
+  bbb: haha
+  # 自己自定义的就不能点击
+
+这是因为在你的资源文件里面有一个spring-configuration-metadata.json文件，这是spring配置的元数据，是json形式
+
+spring-boot-configuration-processor其实是一个注解处理器，在编译阶段干活的，一般在maven的声明都是 ,optional 为true
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+
+官网原文
+
+You can easily generate your own configuration metadata file from items annotated with @ConfigurationProperties by using the spring-boot-configuration-processor jar. The jar includes a Java annotation processor which is invoked as your project is compiled. To use the processor, include a dependency on spring-boot-configuration-processor.
+百度翻译一下：
+通过使用spring boot配置处理器jar，您可以从用@ConfigurationProperties注释的项轻松生成自己的配置元数据文件。jar包含一个Java注释处理器，在编译项目时调用它。要使用处理器，请包含对spring boot配置处理器的依赖。
+
+spring-boot-configuration-processor说白了就是给自定义的配置类生成元数据信息的，因为spring也不知道你有哪些配置类，所以搞了这个方便大家自定义
+=========================================================================================================================
+
+
+配置源数据格式：
+https://docs.spring.io/spring-boot/docs/2.3.4.RELEASE/reference/html/appendix-configuration-metadata.html#configuration-metadata-format
+
+
+
+Configuration metadata files are located inside jars under META-INF/spring-configuration-metadata.json. They use a JSON format with items categorized under either “groups” or “properties” and additional values hints categorized under "hints", as shown in the following example:
+
+
+===============================================================
+StringHttpMessageConverter
+
+
+上述方式表示将请求路径为“/”的所有请求都进行字符编码的过滤，具体过滤方式看set方法里面的内容。
+
+注意：只有当application.properties配置文件中server.servlet.encoding.enabled=false时，上述编码过滤器才会工作。
+
+方式二、使用配置文件的方式进行字符编码
+在配置文件中加入一下键值对：
+
+#第一种加入编码的方式。这种方式好像现在的springboot不太推荐
+server.servlet.encoding.enabled=true
+
+#第二种方式:推荐的方式,第二种方式需要将上面的false改成true
+server.servlet.encoding.charset=UTF-8
+server.servlet.encoding.force=true
+
+============================================================
+
+https://www.cnblogs.com/duanxz/p/3557823.html
